@@ -40,4 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   config.debug_exception_response_format = :api
+  
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new('log/default_log'))
+  config.log_level = :debug
 end

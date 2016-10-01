@@ -78,4 +78,10 @@ Rails.application.configure do
   #config.active_record.dump_schema_after_migration = false
   
   config.debug_exception_response_format = :api
+  
+  #if ENV["RAILS_LOG_TO_STDOUT"].present?
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+  config.log_level = :debug
+  #end
+  
 end
