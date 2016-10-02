@@ -3,19 +3,23 @@ require 'rest_client'
 require 'json'
 require 'net/http'
 
-class APITest < MiniTest::Unit::TestCase
+class APITestHeroku < MiniTest::Unit::TestCase
   def setup
-    url = "https://openflashcardsapi.herokuapp.com/api/v1/questions"
+    url = 'https://openflashcardsapi.herokuapp.com/api/v1/questions'
     jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
     
     #puts jdata
     #response = RestClient.get url, :data => jdata, :content_type => :json, :accept => :json
     #@data = JSON.parse response.body
     
+  
+   
     uri = URI(url)
     req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
     req.body = jdata
-    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+    
+    res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      
       res = http.request(req)
     end
     puts res
