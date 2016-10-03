@@ -20,18 +20,37 @@ class BaseApiController < ApplicationController
       else
         logger.debug "token: " + token
         @status = false
+        
+
         begin
-          @graph = Koala::Facebook::API.new(token)
-          logger.info @graph.to_s
-          @profile = @graph.get_object("me")
-          logger.info @profile.to_s
-          @status = true if @profile
+        
+          @user = User.find_by(:token => token) rescue nil
+        
+          if @user.nil?
+            logger.debug @user
+            @graph = Koala::Facebook::API.new(token)
+            logger.info @graph.to_s
+            @profile = @graph.get_object("me")
+            logger.info @profile.to_s
+            
+            if @profile
+              #@profileJson = JSON.parse(@profile)
+              @user = User.create(:id => @profile['id'], :name => @profile['name'], :token => token)
+            end
+          
+            @status = true if @profile
+          else
+            @status = true if @user
+          end
+          
           logger.info @status
           @status
-        rescue
-          logger.warn "render nothing"
+        rescue => error
+          logger.error "render nothing: " + error.inspect
           render nothing: true, status: :unauthorized
         end
+        
+        
       end
     end
   

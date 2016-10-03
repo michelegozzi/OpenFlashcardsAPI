@@ -1,4 +1,4 @@
 class AnswerSerializer < ActiveModel::Serializer
-  attributes :text
+  attributes :text, :id
   belongs_to :question
 end

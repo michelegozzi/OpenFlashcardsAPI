@@ -27,7 +27,6 @@ module OpenFlashcards
     config.api_only = true
     config.action_view.logger = nil
     config.quiet_assets = true
-    config.logger = ActiveSupport::TaggedLogging.new(Logger.new('log/default_log'))
-    config.log_level = :debug
+    
   end
 end

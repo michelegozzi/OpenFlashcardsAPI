@@ -2,20 +2,20 @@ Rails.application.routes.draw do
 
   scope '/api' do
     scope '/v1' do
-      scope '/questions' do
-        get '/' => 'api_questions#index'
-        post '/' => 'api_questions#create'
-        scope '/:text' do
-          get '/' => 'api_questions#show'
-          put '/' => 'api_questions#update'
-          # scope '/todos' do
-            # get '/' => 'api_todos#index'
-            # post '/' => 'api_todos#create'
-            # scope '/:todo_name' do
-              # get '/' => 'api_todos#show'
-              # put '/' => 'api_todos#update'
-            # end
-          # end
+      scope '/topics' do
+        get '/' => 'api_topics#index'
+        post '/' => 'api_topics#create'
+        scope '/:id' do
+          get '/' => 'api_topics#show'
+          put '/' => 'api_topics#update'
+           scope '/questions' do
+             get '/' => 'api_questions#index'
+             post '/' => 'api_questions#create'
+             scope '/:id' do
+               get '/' => 'api_questions#show'
+               put '/' => 'api_questions#update'
+             end
+           end
         end
       end
     end
