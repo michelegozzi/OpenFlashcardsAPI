@@ -5,7 +5,7 @@ require 'net/http'
 
 class APITest < MiniTest::Unit::TestCase
   def setup
-    url = "http://localhost:3000/api/v1/questions"
+    url = "http://localhost:3000/api/v1/topics"
     #jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
     
     #puts jdata
