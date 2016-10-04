@@ -5,8 +5,8 @@ require 'net/http'
 
 class APITestHeroku < MiniTest::Unit::TestCase
   def setup
-    url = 'https://openflashcardsapi.herokuapp.com/api/v1/questions'
-    jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
+    url = 'https://openflashcardsapi.herokuapp.com/api/v1/topics'
+    #jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
     
     #puts jdata
     #response = RestClient.get url, :data => jdata, :content_type => :json, :accept => :json
@@ -15,8 +15,8 @@ class APITestHeroku < MiniTest::Unit::TestCase
   
    
     uri = URI(url)
-    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
-    req.body = jdata
+    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"])
+    #req.body = jdata
     
     res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
       

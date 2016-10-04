@@ -17,6 +17,8 @@ t1.questions.push(q1)
 t1.save
 
 q2 = Question.create(text: "What does the Constitution do?");
+t1.questions.push(q2)
+t1.save
 a2_1 = Answer.create(text: "sets up the government");
 a2_2 = Answer.create(text: "defines the government");
 a2_3 = Answer.create(text: "protects basic rights of Americans");
@@ -24,8 +26,7 @@ q2.answers.push(a2_1)
 q2.answers.push(a2_2)
 q2.answers.push(a2_3)
 q2.save
-t1.questions.push(q2)
-t1.save
+
 
 q3 = Question.create(text: "The idea of self-government is in the first three words of the Constitution. What are these words?");
 a3_1 = Answer.create(text: "We the People");
