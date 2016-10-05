@@ -34,6 +34,7 @@ class BaseApiController < ApplicationController
             logger.info @profile.to_s
             
             if @profile
+              logger.info "creating new profile for #{@profile['name']}: id=#{@profile['id']}, token=#{token}"
               #@profileJson = JSON.parse(@profile)
               @user = User.create(:id => @profile['id'], :name => @profile['name'], :token => token)
             end
