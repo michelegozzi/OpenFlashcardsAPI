@@ -18,6 +18,16 @@ Rails.application.routes.draw do
            end
         end
       end
+      
+      scope '/users' do
+        get '/' => 'api_users#index'
+        #post '/' => 'api_topics#create'
+        scope '/:token' do
+          get '/' => 'api_users#show'
+          #put '/' => 'api_users#update'
+        end
+      end
+      
     end
   end
 

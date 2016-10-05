@@ -5,9 +5,14 @@ class BaseApiController < ApplicationController
 
   private
     def bearer_token
-      pattern = /^Bearer /
-      header  = request.env["HTTP_AUTHORIZATION"] # <= env
-      header.gsub(pattern, '') if header && header.match(pattern)
+      begin
+        pattern = /^Bearer /
+        header = request.env["HTTP_AUTHORIZATION"] # <= env
+        header = header.gsub(pattern, '') if header && header.match(pattern)
+        header.encode("UTF-8")
+      rescue Encoding::UndefinedConversionError
+        # ...
+      end
     end
     
     def authenticate_user_from_http_token!
@@ -18,7 +23,7 @@ class BaseApiController < ApplicationController
       if token.nil?
         render nothing: true, status: :unauthorized
       else
-        logger.debug "token: " + token
+        logger.debug "token: #{token}, encoding: #{token.encoding.name}"
         @status = false
         
 
