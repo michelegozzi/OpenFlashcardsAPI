@@ -24,7 +24,8 @@ class BaseApiController < ApplicationController
 
         begin
         
-          @user = User.find_by(:token => token) rescue nil
+          #@user = User.find_by(:token => token) rescue nil
+          @user = User.where(:token => token).first rescue nil
           
           logger.warn "user is null" unless @user.present?
         
