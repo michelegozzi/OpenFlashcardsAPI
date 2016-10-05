@@ -11,7 +11,7 @@ class BaseApiController < ApplicationController
         header = header.gsub(pattern, '') if header && header.match(pattern)
         header.encode("UTF-8")
       rescue Encoding::UndefinedConversionError
-        # ...
+        render nothing: true, status: :bad_request
       end
     end
     
