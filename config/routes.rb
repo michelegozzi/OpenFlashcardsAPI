@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       scope '/users' do
         get '/' => 'api_users#index'
         #post '/' => 'api_topics#create'
-        scope '/:token' do
+        scope '/:id' do
           get '/' => 'api_users#show'
           #put '/' => 'api_users#update'
         end

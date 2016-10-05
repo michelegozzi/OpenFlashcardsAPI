@@ -1,4 +1,7 @@
-class ApiUsersController < ApplicationController
+class ApiUsersController < BaseApiController
+
+  before_filter :find_user, only: [:show, :update]
+
   def index
     #render json: Topic.where('owner_id = ?', @user.id)
     @users = User.all
@@ -7,13 +10,13 @@ class ApiUsersController < ApplicationController
   end
 
   def show
-    token = params[:token].to_s.encode("UTF-8")
-    logger.info "Encoding: #{token.encoding.name}"
-    @user = User.where(:token => token).first rescue nil
-    
-    logger.info "Welcome #{@user.name}!" if @user
-    
     render json: @user
-    
   end
+  
+  private
+    def find_user
+      @user = User.where(:id => params[:id]).first rescue nil
+      logger.info "Welcome #{@user.name}!" if @user
+      render nothing: true, status: :not_found unless @user.present?
+    end
 end

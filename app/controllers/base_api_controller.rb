@@ -8,8 +8,9 @@ class BaseApiController < ApplicationController
       begin
         pattern = /^Bearer /
         header = request.env["HTTP_AUTHORIZATION"] # <= env
-        header = header.gsub(pattern, '') if header && header.match(pattern)
-        header.encode("UTF-8")
+        header.gsub(pattern, '') if header && header.match(pattern)
+        #header = header.gsub(pattern, '') if header && header.match(pattern)
+        #header.encode("USASCII")
       rescue Encoding::UndefinedConversionError
         render nothing: true, status: :bad_request
       end
@@ -30,30 +31,35 @@ class BaseApiController < ApplicationController
         begin
         
           #@user = User.find_by(:token => token) rescue nil
-          @user = User.where(:token => token).first rescue nil
+          
           
           logger.warn "user is null" unless @user.present?
         
-          if @user.nil?
-            logger.debug @user
-            @graph = Koala::Facebook::API.new(token)
-            logger.info @graph.to_s
-            @profile = @graph.get_object("me")
-            logger.info @profile.to_s
-            
-            if @profile
-              logger.info "creating new profile for #{@profile['name']}: id=#{@profile['id']}, token=#{token}"
-              #@profileJson = JSON.parse(@profile)
-              @user = User.create(:id => @profile['id'], :name => @profile['name'], :token => token)
-            end
           
-            @status = true if @profile
-          else
-            @status = true if @user
-            logger.info "Welcome #{@user.name}!"
+          logger.debug "User: #{@user.inspect}"
+          @graph = Koala::Facebook::API.new(token)
+          logger.info "Facebook graph: #{@graph.inspect}"
+          @profile = @graph.get_object("me?fields=id,name,email")
+          logger.info "Facebook profile: #{@profile.to_s}"
+            
+          if @profile
+            @user = User.or(:id => @profile['id'], :email => @profile['email']).first rescue nil
+            
+            if @user.nil?
+              logger.info "creating new profile for #{@profile['name']}: id=#{@profile['id']}, email=#{@profile['email']}"
+              #@profileJson = JSON.parse(@profile)
+              @user = User.create(:id => @profile['id'], :name => @profile['name'], :email => @profile['email'])
+            end
           end
           
-          logger.info @status
+          @status = true if @profile and @user
+          if @status
+            logger.info "Welcome #{@user.name}! Status=#{@status}"
+          else
+            logger.error "Invalid user or profile. Status=#{@status}"
+          end
+          
+          
           @status
         rescue => error
           logger.error "render nothing: " + error.inspect
