@@ -25,6 +25,8 @@ class BaseApiController < ApplicationController
         begin
         
           @user = User.find_by(:token => token) rescue nil
+          
+          logger.warn "user is null" unless @user.present?
         
           if @user.nil?
             logger.debug @user
@@ -42,6 +44,7 @@ class BaseApiController < ApplicationController
             @status = true if @profile
           else
             @status = true if @user
+            logger.info "Welcome #{@user.name}!"
           end
           
           logger.info @status
