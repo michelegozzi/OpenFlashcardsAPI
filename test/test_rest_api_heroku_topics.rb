@@ -3,9 +3,9 @@ require 'rest_client'
 require 'json'
 require 'net/http'
 
-class APITestHeroku < MiniTest::Unit::TestCase
+class APITestHerokuTopics < MiniTest::Unit::TestCase
   def setup
-    url = 'https://openflashcardsapi.herokuapp.com/api/v1/topics'
+    url = 'https://openflashcardsapi.herokuapp.com/api/topics'
     #jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
     
     #puts jdata
@@ -15,7 +15,7 @@ class APITestHeroku < MiniTest::Unit::TestCase
   
    
     uri = URI(url)
-    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"])
+    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.facebook.v1')
     #req.body = jdata
     
     res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|

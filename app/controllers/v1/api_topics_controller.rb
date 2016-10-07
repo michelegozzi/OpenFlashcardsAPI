@@ -23,8 +23,9 @@ module V1
       #render json: Topic.where('owner_id = ?', @user.id)
       @topics = Topic.all
       logger.info "rendering json"
-      render json: @topics #, :root => 'topics' #, serializer: TopicSerializer, root: 'topics'
+      #render json: @topics, :root => 'topics' #, serializer: TopicSerializer, root: 'topics'
       #render json: {:topics => @topics}, :root => 'topic', each_serializer: SimpleTopicSerializer
+      render json: @topics, :root => 'topic', each_serializer: SimpleTopicSerializer
       
       #render json: {topics: TopicsSerializer.new(@topics)}
       
