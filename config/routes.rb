@@ -1,33 +1,34 @@
 Rails.application.routes.draw do
 
   scope '/api' do
-    scope '/v1' do
-      scope '/topics' do
-        get '/' => 'api_topics#index'
-        post '/' => 'api_topics#create'
-        scope '/:id' do
-          get '/' => 'api_topics#show'
-          put '/' => 'api_topics#update'
-           scope '/questions' do
-             get '/' => 'api_questions#index'
-             post '/' => 'api_questions#create'
-             scope '/:id' do
-               get '/' => 'api_questions#show'
-               put '/' => 'api_questions#update'
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      #scope '/:idtype' do
+        scope '/topics' do
+          get '/' => 'api_topics#index'
+          post '/' => 'api_topics#create'
+          scope '/:id' do
+            get '/' => 'api_topics#show'
+            put '/' => 'api_topics#update'
+             scope '/questions' do
+               get '/' => 'api_questions#index'
+               post '/' => 'api_questions#create'
+               scope '/:id' do
+                 get '/' => 'api_questions#show'
+                 put '/' => 'api_questions#update'
+               end
              end
-           end
+          end
         end
-      end
-      
-      scope '/users' do
-        get '/' => 'api_users#index'
-        #post '/' => 'api_topics#create'
-        scope '/:id' do
-          get '/' => 'api_users#show'
-          #put '/' => 'api_users#update'
+        
+        scope '/users' do
+          get '/' => 'api_users#index'
+          #post '/' => 'api_topics#create'
+          scope '/:id' do
+            get '/' => 'api_users#show'
+            #put '/' => 'api_users#update'
+          end
         end
-      end
-      
+      #end
     end
   end
 
