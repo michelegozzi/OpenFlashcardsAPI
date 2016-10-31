@@ -105,8 +105,8 @@ module V1
         logger.info "Identity type: #{params[:idtype]}"
         #logger.info request.http_data
         ###logger.debug request.body.read.to_s
-        ###@json = JSON.parse(request.body.read)
-        ###logger.debug "JSON:" + @json.to_s
+        @json = JSON.parse(request.body.read) rescue nil
+        logger.debug "JSON:" + @json.to_s if @json.present?
       end
   end
 end

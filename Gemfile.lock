@@ -20,6 +20,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ZenTest (4.11.1)
     actionmailer (4.2.6)
       actionpack (= 4.2.6)
       actionview (= 4.2.6)
@@ -57,22 +58,38 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    autotest-rails (4.2.1)
+      ZenTest (~> 4.5)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bson (3.2.6)
     builder (3.2.2)
     byebug (9.0.6)
     concurrent-ruby (1.0.2)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
+    faker (1.6.6)
+      i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     json (1.8.3)
-    jsonapi (0.1.1.beta2)
-      json (~> 1.8)
+    jsonapi (0.1.1.beta5)
+      jsonapi-parser (= 0.1.1.beta2)
+      jsonapi-renderer (= 0.1.1.beta1)
+    jsonapi-parser (0.1.1.beta2)
+    jsonapi-renderer (0.1.1.beta1)
     koala (2.4.0)
       addressable
       faraday
@@ -90,11 +107,9 @@ GEM
       bson (~> 3.0)
     multi_json (1.12.1)
     multipart-post (2.0.0)
-    nokogiri (1.6.8-x86-mingw32)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     origin (2.2.0)
-    pkg-config (1.1.7)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -128,7 +143,24 @@ GEM
     rake (11.3.0)
     rdoc (4.2.2)
       json (~> 1.4)
-    sdoc (0.4.1)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-rails (3.5.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sprockets (3.7.0)
@@ -155,11 +187,17 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers!
+  autotest
+  autotest-rails
   byebug
+  database_cleaner
+  factory_girl_rails
+  faker (~> 1.6, >= 1.6.6)
   koala
   mongoid!
   rails (= 4.2.6)
   rails-api
+  rspec-rails (~> 3.5)
   sdoc (~> 0.4.0)
   tzinfo-data
   web-console (~> 2.0)

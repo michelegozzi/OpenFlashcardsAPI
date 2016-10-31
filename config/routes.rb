@@ -12,7 +12,7 @@ Rails.application.routes.draw do
              scope '/questions' do
                get '/' => 'api_questions#index'
                post '/' => 'api_questions#create'
-               scope '/:id' do
+               scope '/:qid' do
                  get '/' => 'api_questions#show'
                  put '/' => 'api_questions#update'
                end
