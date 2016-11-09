@@ -13,7 +13,7 @@ class APITestTopicContains < MiniTest::Unit::TestCase
     #@data = JSON.parse response.body
     
     uri = URI(url)
-    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.fbtest.v1')
+    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.facebook.v1')
     #req.body = jdata
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       res = http.request(req)

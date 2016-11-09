@@ -19,55 +19,73 @@ module V1
       
       def authenticate_user_from_http_token!
         
-        token = bearer_token
-        logger.debug "token: " + token
+        identity = ApiConstraints::REGEX.match(request.headers['Accept'])[:identity] rescue nil
         
-        if token.nil?
-          render nothing: true, status: :unauthorized
-        else
-          logger.debug "token: #{token}, encoding: #{token.encoding.name}"
-          @status = false
-          
-
-          begin
-          
-            #@user = User.find_by(:token => token) rescue nil
-            
-            
-            logger.warn "user is null" unless @user.present?
-          
-            
-            logger.debug "User: #{@user.inspect}"
-            @graph = Koala::Facebook::API.new(token)
-            logger.info "Facebook graph: #{@graph.inspect}"
-            @profile = @graph.get_object("me?fields=id,name,email")
-            logger.info "Facebook profile: #{@profile.to_s}"
-              
-            if @profile
-              @user = User.or(:id => @profile['id'], :email => @profile['email']).first rescue nil
-              
-              if @user.nil?
-                logger.info "creating new profile for #{@profile['name']}: id=#{@profile['id']}, email=#{@profile['email']}"
-                #@profileJson = JSON.parse(@profile)
-                @user = User.create(:id => @profile['id'], :name => @profile['name'], :email => @profile['email'])
-              end
-            end
-            
-            @status = true if @profile and @user
-            if @status
-              logger.info "Welcome #{@user.name}! Status=#{@status}"
-            else
-              logger.error "Invalid user or profile. Status=#{@status}"
-            end
-            
-            
-            @status
-          rescue => error
-            logger.error "render nothing: " + error.inspect
-            render nothing: true, status: :unauthorized
+        if identity.nil?
+          logger.error "Identity type is missing or Accept header is invalid. " + request.headers['Accept'].inspect
+          render nothing: true, status: :bad_request
+        end
+        
+        case identity
+        when "api"
+          authenticate_or_request_with_http_token do |token, option|
+            ApiKey.where(:access_token => token).count > 0
           end
+        when "facebook"
+          token = bearer_token
+          logger.debug "token: " + token
           
+          if token.nil?
+            render nothing: true, status: :unauthorized
+          else
+            logger.debug "token: #{token}, encoding: #{token.encoding.name}"
+            @status = false
+  
+            begin
+                #@user = User.find_by(:token => token) rescue nil
+              logger.warn "user is null" unless @user.present?
+              logger.debug "User: #{@user.inspect}"
+              @graph = Koala::Facebook::API.new(token)
+              logger.info "Facebook graph: #{@graph.inspect}"
+              @profile = @graph.get_object("me?fields=id,name,email")
+              logger.info "Facebook profile: #{@profile.to_s}"
+                
+              if @profile
+                @user = User.or(:id => @profile['id'], :email => @profile['email']).first rescue nil
+                
+                if @user.nil?
+                  logger.info "creating new profile for #{@profile['name']}: id=#{@profile['id']}, email=#{@profile['email']}"
+                  #@profileJson = JSON.parse(@profile)
+                  @user = User.create(:id => @profile['id'], :name => @profile['name'], :email => @profile['email'])
+                end
+              end
+              
+              if !@user.api_keys.present?
+                @api_key = ApiKey.create
+                @api_key.generate_access_token
+                @api_key.save
+                @user.api_keys.push(@api_key)
+              else
+                @api_key = @user.api_keys.first
+              end
+              
+              @status = true if @profile and @user
+              if @status
+                logger.info "Welcome #{@user.name}! Status=#{@status}"
+              else
+                logger.error "Invalid user or profile. Status=#{@status}"
+              end
+              
+              
+              @status
+            rescue => error
+              logger.error "render nothing: " + error.inspect
+              render nothing: true, status: :unauthorized
+            end
           
+          end
+        else
+          render nothing: true, status: :method_not_allowed
         end
       end
     

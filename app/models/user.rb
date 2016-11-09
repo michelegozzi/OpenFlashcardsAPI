@@ -19,6 +19,7 @@ class User
                         
   #index({ id: 1, token: 1 }, { unique: true, name: "user_unique_index" })
   
+  has_many :api_keys
 
 end
 

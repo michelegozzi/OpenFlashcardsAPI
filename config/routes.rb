@@ -3,21 +3,46 @@ Rails.application.routes.draw do
   scope '/api' do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       #scope '/:idtype' do
+        
         scope '/topics' do
           get '/' => 'api_topics#index'
           post '/' => 'api_topics#create'
           scope '/:id' do
             get '/' => 'api_topics#show'
-            put '/' => 'api_topics#update'
-             scope '/questions' do
-               get '/' => 'api_questions#index'
-               post '/' => 'api_questions#create'
-               scope '/:qid' do
-                 get '/' => 'api_questions#show'
-                 put '/' => 'api_questions#update'
-               end
-             end
+            put '/' => 'api_topics#update', :as => "update_topic"
+            scope '/questions' do
+              get '/' => 'api_questions#index'
+              post '/' => 'api_questions#create'
+              #scope '/:qid' do
+              #  get '/' => 'api_questions#show'
+              #  put '/' => 'api_questions#update'
+              #end
+            end
           end
+        end
+        
+        scope '/questions' do
+          scope '/:id' do
+            get '/' => 'api_questions#show'
+            put '/' => 'api_questions#update'
+            scope '/answers' do
+              get '/' => 'api_answers#index'
+              post '/' => 'api_answers#create'
+            end
+          end
+        end
+        
+        scope '/answers' do
+          get '/' => 'api_answers#index'
+          post '/' => 'api_answers#create'
+          scope '/:id' do
+            get '/' => 'api_answers#show'
+            put '/' => 'api_answers#update'
+          end
+        end
+        
+        scope '/identities' do
+          post '/' => 'api_identities#create'
         end
         
         scope '/users' do

@@ -3,9 +3,9 @@ require 'rest_client'
 require 'json'
 require 'net/http'
 
-class APITest < MiniTest::Unit::TestCase
+class APITestTopicContains < MiniTest::Unit::TestCase
   def setup
-    url = "http://localhost:3000/api/topics/57f546c1aaf85f3acc000000/questions"
+    url = "http://localhost:3000/api/identities"
     #jdata = { :api_token => ENV["FB_API_TOKEN"]}.to_json
     
     #puts jdata
@@ -13,7 +13,7 @@ class APITest < MiniTest::Unit::TestCase
     #@data = JSON.parse response.body
     
     uri = URI(url)
-    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.facebook.v1')
+    req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.facebook.v1')
     #req.body = jdata
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       res = http.request(req)
@@ -21,7 +21,7 @@ class APITest < MiniTest::Unit::TestCase
     puts res
     
     @data = res.body
-
+    
     
   end
 
