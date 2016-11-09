@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-t1 = Topic.create(name: "US Citizenship Civic Test", description: "Civics (History and Government) Questions for the Naturalization Test")
+t1 = Topic.create(name: "US Citizenship Civic Test (OREGON)", description: "Civics (History and Government) Questions for the Naturalization Test")
 
 j = [
 {
@@ -170,7 +170,8 @@ j = [
   :num => 20,
   :q => "Who is one of your state's U.S. Senators now?*",
   :answers => [
-  {:a => "Answers will vary. [District of Columbia residents and residents of U.S. territories should answer that D.C. (or the territory where the applicant lives) has no U.S. Senators.]"}
+  {:a => "Ron Wyden (D)"},
+  {:a => "and Jeff Merkley"}
   ]
 },
 {
@@ -191,7 +192,11 @@ j = [
   :num => 23,
   :q => "Name your U.S. Representative.",
   :answers => [
-  {:a => "Answers will vary. [Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.]"}
+  {:a => "Suzanne Bonamici (D) - District 1"},
+  {:a => "Greg Walden (R) - District 2"},
+  {:a => "Earl Blumenauer (D) - District 3"},
+  {:a => "Peter DeFazio (D) - District 4"},
+  {:a => "Kurt Schrader (D) - District 5"}
   ]
 },
 {
@@ -361,14 +366,14 @@ j = [
   :num => 43,
   :q => "Who is the Governor of your state now?",
   :answers => [
-  {:a => "Answers will vary. [District of Columbia residents should answer that D.C. does not have a Governor.]"}
+  {:a => "Kate Brown (D)"}
   ]
 },
 {
   :num => 44,
   :q => "What is the capital of your state?*",
   :answers => [
-  {:a => "Answers will vary. [District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]"}
+  {:a => "Salem"}
   ]
 },
 {
