@@ -310,7 +310,7 @@ j = [
   :q => "What does the judicial branch do?",
   :answers => [
   {:a => "reviews laws"},
-  {:a => text: "explains laws"},
+  {:a => "explains laws"},
   {:a => "resolves disputes (disagreements)"},
   {:a => "decides if a law goes against the Constitution"}
   ]
