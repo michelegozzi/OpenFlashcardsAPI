@@ -6,9 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+api_key = ApiKey.new(access_token: ENV["OPENFLASHCARDS_DEFAULT_USER_API_KEY"])
+api_key.save
 
 default_user = User.create(id: ENV["OPENFLASHCARDS_DEFAULT_USER_ID"], name: ENV["OPENFLASHCARDS_DEFAULT_USER_NAME"], email: ENV["OPENFLASHCARDS_DEFAULT_USER_EMAIL"])
-default_user.api_keys.push("OPENFLASHCARDS_DEFAULT_USER_API_KEY")
+default_user.api_keys.push(api_key)
 default_user.save
 
 t1 = Topic.create(name: "US Citizenship Civic Test (OREGON)", description: "Civics (History and Government) Questions for the Naturalization Test")
