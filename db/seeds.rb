@@ -1323,7 +1323,7 @@ j2 = [
   { :a => "Columbus Day" },
   { :a => "Veterans Day" },
   { :a => "Thanksgiving" },
-  { :a => "Christmas" } ] },
+  { :a => "Christmas" } ] }
 ]
 
 j2.each do |q| 
@@ -1337,4 +1337,61 @@ j2.each do |q|
   newq.save
   t2.questions.push(newq)
   t2.save
+end
+
+tA = Topic.create(name: "Principles of American Democracy", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+
+qA = [
+  { :num => 1, :q => "What is the supreme law of the land?", :answers => [
+  { :a => "the Constitution" } ] },
+  { :num => 2, :q => "What does the Constitution do?", :answers => [
+  { :a => "sets up the government" },
+  { :a => "defines the government" },
+  { :a => "protects basic rights of Americans" } ] },
+  { :num => 3, :q => "The idea of self-government is in the first three words of the Constitution. What are these words?", :answers => [
+  { :a => "We the People" } ] },
+  { :num => 4, :q => "What is an amendment?", :answers => [
+  { :a => "a change (to the Constitution)" },
+  { :a => "an addition (to the Constitution)" } ] },
+  { :num => 5, :q => "What do we call the first ten amendments to the Constitution?", :answers => [
+  { :a => "the Bill of Rights" } ] },
+  { :num => 6, :q => "What is one right or freedom from the First Amendment?*", :answers => [
+  { :a => "speech" },
+  { :a => "religion" },
+  { :a => "assembly" },
+  { :a => "press" },
+  { :a => "petition the government" } ] },
+  { :num => 7, :q => "How many amendments does the Constitution have?", :answers => [
+  { :a => "twenty-seven (27)" } ] },
+  { :num => 8, :q => "What did the Declaration of Independence do?", :answers => [
+  { :a => "announced our independence (from Great Britain)" },
+  { :a => "declared our independence (from Great Britain)" },
+  { :a => "said that the United States is free (from Great Britain)" } ] },
+  { :num => 9, :q => "What are two rights in the Declaration of Independence?", :answers => [
+  { :a => "life" },
+  { :a => "liberty" },
+  { :a => "pursuit of happiness" } ] },
+  { :num => 10, :q => "What is freedom of religion?", :answers => [
+  { :a => "You can practice any religion, or not practice a religion." } ] },
+  { :num => 11, :q => "What is the economic system in the United States?*", :answers => [
+  { :a => "capitalist economy" },
+  { :a => "market economy" } ] },
+  { :num => 12, :q => "What is the 'rule of law'?", :answers => [
+  { :a => "Everyone must follow the law." },
+  { :a => "Leaders must obey the law." },
+  { :a => "Government must obey the law." },
+  { :a => "No one is above the law." } ] }
+]
+
+qA.each do |q| 
+  newq = Question.create(text: q[:q])
+  
+  q[:answers].each do |a|
+    newa = Answer.create(text: a[:a]);
+    newq.answers.push(newa)
+  end
+    
+  newq.save
+  tA.questions.push(newq)
+  tA.save
 end
