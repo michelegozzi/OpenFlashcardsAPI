@@ -1339,7 +1339,7 @@ j2.each do |q|
   t2.save
 end
 
-tA = Topic.create(name: "Principles of American Democracy", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+######################
 
 qA = [
   { :num => 1, :q => "What is the supreme law of the land?", :answers => [
@@ -1383,6 +1383,7 @@ qA = [
   { :a => "No one is above the law." } ] }
 ]
 
+tA = Topic.create(name: "Principles of American Democracy", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 qA.each do |q| 
   newq = Question.create(text: q[:q])
   
