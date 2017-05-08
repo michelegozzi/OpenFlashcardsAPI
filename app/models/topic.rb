@@ -13,7 +13,7 @@ class Topic
                         length: { maximum: 100 }
                         
   validates :description,      presence: true,
-                               length: { maximum: 100 }
+                               length: { maximum: 1000 }
                         
   has_many :questions
   
