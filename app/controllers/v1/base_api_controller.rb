@@ -28,8 +28,15 @@ module V1
         
         case identity
         when "api"
-          authenticate_or_request_with_http_token do |token, option|
-            ApiKey.where(:access_token => token).count > 0
+          begin
+            @status = authenticate_or_request_with_http_token do |token, option|
+              ApiKey.where(:access_token => token).count > 0
+            end
+          
+            @status
+          rescue => error
+            logger.error "render nothing: " + error.inspect
+            render nothing: true, status: :unauthorized
           end
         when "facebook"
           token = bearer_token

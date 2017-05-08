@@ -15,7 +15,7 @@ class APITestHerokuTopics < MiniTest::Unit::TestCase
   
    
     uri = URI(url)
-    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["FB_API_TOKEN"], 'Accept' => 'application/openflashcards.facebook.v1')
+    req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => 'Bearer '+ ENV["OPENFLASHCARDS_DEFAULT_USER_API_KEY"], 'Accept' => 'application/openflashcards.api.v1')
     #req.body = jdata
     
     res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
