@@ -1828,7 +1828,7 @@ j = [
   { :a => "Columbus Day" },
   { :a => "Veterans Day" },
   { :a => "Thanksgiving" },
-  { :a => "Christmas" } ] },
+  { :a => "Christmas" } ] }
 ]
 t = Topic.create(name: "INTEGRATED CIVICS", description: "INTEGRATED CIVICS - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
