@@ -1381,6 +1381,7 @@ qA = [
   { :a => "Leaders must obey the law." },
   { :a => "Government must obey the law." },
   { :a => "No one is above the law." } ] }
+ ]
 ]
 
 tA = Topic.create(name: "Principles of American Democracy", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
