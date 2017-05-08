@@ -1806,7 +1806,6 @@ j = [
   { :num => 95, :q => "Where is the Statue of Liberty?*", :answers => [
   { :a => "New York (Harbor)" },
   { :a => "Liberty Island" } ] },
-  { :num => [Als, :q => "acceptable are New Jersey, near New York City, and on the Hudson (River).]", :answers => [
   { :num => 96, :q => "Why does the flag have 13 stripes?", :answers => [
   { :a => "because there were 13 original colonies" },
   { :a => "because the stripes represent the original colonies" } ] },
