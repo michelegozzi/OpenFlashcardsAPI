@@ -1643,7 +1643,7 @@ j = [
   { :num => 69, :q => "Who is the 'Father of Our Country'?", :answers => [
   { :a => "(George) Washington" } ] },
   { :num => 70, :q => "Who was the first President?*", :answers => [
-  { :a => "(George) Washington" } ] },
+  { :a => "(George) Washington" } ] }
 ]
 t = Topic.create(name: "AMERICAN HISTORY - Colonial Period and Independence", description: "AMERICAN HISTORY - Colonial Period and Independence - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
@@ -1659,3 +1659,187 @@ j.each do |q|
   t.save
 end
 
+### AMERICAN HISTORY - 1800s (58-70) ###
+j = [
+  { :num => 71, :q => "What territory did the United States buy from France in 1803?", :answers => [
+  { :a => "the Louisiana Territory" },
+  { :a => "Louisiana" } ] },
+  { :num => 72, :q => "Name one war fought by the United States in the 1800s.", :answers => [
+  { :a => "War of 1812" },
+  { :a => "Mexican-American War" },
+  { :a => "Civil War" },
+  { :a => "Spanish-American War" } ] },
+  { :num => 73, :q => "Name the U.S. war between the North and the South.", :answers => [
+  { :a => "the Civil War" },
+  { :a => "the War between the States" } ] },
+  { :num => 74, :q => "Name one problem that led to the Civil War.", :answers => [
+  { :a => "slavery" },
+  { :a => "economic reasons" },
+  { :a => "states' rights" } ] },
+  { :num => 75, :q => "What was one important thing that Abraham Lincoln did?*", :answers => [
+  { :a => "freed the slaves (Emancipation Proclamation)" },
+  { :a => "saved (or preserved) the Union" },
+  { :a => "led the United States during the Civil War" } ] },
+  { :num => 76, :q => "What did the Emancipation Proclamation do?", :answers => [
+  { :a => "freed the slaves" },
+  { :a => "freed slaves in the Confederacy" },
+  { :a => "freed slaves in the Confederate states" },
+  { :a => "freed slaves in most Southern states" } ] },
+  { :num => 77, :q => "What did Susan B. Anthony do?", :answers => [
+  { :a => "fought for women's rights" },
+  { :a => "fought for civil rights" } ] }
+]
+t = Topic.create(name: "AMERICAN HISTORY - 1800s", description: "AMERICAN HISTORY - 1800s - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+j.each do |q| 
+  newq = Question.create(text: q[:q])
+  
+  q[:answers].each do |a|
+    newa = Answer.create(text: a[:a]);
+    newq.answers.push(newa)
+  end
+    
+  newq.save
+  t.questions.push(newq)
+  t.save
+end
+
+### Recent American History and Other Important Historical Information (78-87) ###
+j = [
+  { :num => 78, :q => "Name one war fought by the United States in the 1900s.*", :answers => [
+  { :a => "World War I" },
+  { :a => "World War II" },
+  { :a => "Korean War" },
+  { :a => "Vietnam War" },
+  { :a => "(Persian) Gulf War" } ] },
+  { :num => 79, :q => "Who was President during World War I?", :answers => [
+  { :a => "(Woodrow) Wilson" } ] },
+  { :num => 80, :q => "Who was President during the Great Depression and World War II?", :answers => [
+  { :a => "(Franklin) Roosevelt" } ] },
+  { :num => 81, :q => "Who did the United States fight in World War II?", :answers => [
+  { :a => "Japan, Germany, and Italy" } ] },
+  { :num => 82, :q => "Before he was President, Eisenhower was a general. What war was he in?", :answers => [
+  { :a => "World War II" } ] },
+  { :num => 83, :q => "During the Cold War, what was the main concern of the United States?", :answers => [
+  { :a => "Communism" } ] },
+  { :num => 84, :q => "What movement tried to end racial discrimination?", :answers => [
+  { :a => "civil rights (movement)" } ] },
+  { :num => 85, :q => "What did Martin Luther King, Jr. do?*", :answers => [
+  { :a => "fought for civil rights" },
+  { :a => "worked for equality for all Americans" } ] },
+  { :num => 86, :q => "What major event happened on September 11, 2001, in the United States?", :answers => [
+  { :a => "Terrorists attacked the United States." } ] },
+  { :num => 87, :q => "Name one American Indian tribe in the United States.", :answers => [
+  { :a => "Cherokee" },
+  { :a => "Navajo" },
+  { :a => "Sioux" },
+  { :a => "Chippewa" },
+  { :a => "Choctaw" },
+  { :a => "Pueblo" },
+  { :a => "Apache" },
+  { :a => "Iroquois" },
+  { :a => "Creek" },
+  { :a => "Blackfeet" },
+  { :a => "Seminole" },
+  { :a => "Cheyenne" },
+  { :a => "Arawak" },
+  { :a => "Shawnee" },
+  { :a => "Mohegan" },
+  { :a => "Huron" },
+  { :a => "Oneida" },
+  { :a => "Lakota" },
+  { :a => "Crow" },
+  { :a => "Teton" },
+  { :a => "Hopi" },
+  { :a => "Inuit" } ] }
+
+]
+t = Topic.create(name: "AMERICAN HISTORY - Recent American History and Other Important Historical Information", description: "AMERICAN HISTORY - Recent American History and Other Important Historical Information - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+j.each do |q| 
+  newq = Question.create(text: q[:q])
+  
+  q[:answers].each do |a|
+    newa = Answer.create(text: a[:a]);
+    newq.answers.push(newa)
+  end
+    
+  newq.save
+  t.questions.push(newq)
+  t.save
+end
+
+### INTEGRATED CIVICS (88-100) ###
+j = [
+  { :num => 88, :q => "Name one of the two longest rivers in the United States.", :answers => [
+  { :a => "Missouri (River)" },
+  { :a => "Mississippi (River)" } ] },
+  { :num => 89, :q => "What ocean is on the West Coast of the United States?", :answers => [
+  { :a => "Pacific (Ocean)" } ] },
+  { :num => 90, :q => "What ocean is on the East Coast of the United States?", :answers => [
+  { :a => "Atlantic (Ocean)" } ] },
+  { :num => 91, :q => "Name one U.S. territory.", :answers => [
+  { :a => "Puerto Rico" },
+  { :a => "U.S. Virgin Islands" },
+  { :a => "American Samoa" },
+  { :a => "Northern Mariana Islands" },
+  { :a => "Guam" } ] },
+  { :num => 92, :q => "Name one state that borders Canada.", :answers => [
+  { :a => "Maine" },
+  { :a => "New Hampshire" },
+  { :a => "Vermont" },
+  { :a => "New York" },
+  { :a => "Pennsylvania" },
+  { :a => "Ohio" },
+  { :a => "Michigan" },
+  { :a => "Minnesota" },
+  { :a => "North Dakota" },
+  { :a => "Montana" },
+  { :a => "Idaho" },
+  { :a => "Washington" },
+  { :a => "Alaska" } ] },
+  { :num => 93, :q => "Name one state that borders Mexico.", :answers => [
+  { :a => "California" },
+  { :a => "Arizona" },
+  { :a => "New Mexico" },
+  { :a => "Texas" } ] },
+  { :num => 94, :q => "What is the capital of the United States?*", :answers => [
+  { :a => "Washington, D.C." } ] },
+  { :num => 95, :q => "Where is the Statue of Liberty?*", :answers => [
+  { :a => "New York (Harbor)" },
+  { :a => "Liberty Island" } ] },
+  { :num => [Als, :q => "acceptable are New Jersey, near New York City, and on the Hudson (River).]", :answers => [
+  { :num => 96, :q => "Why does the flag have 13 stripes?", :answers => [
+  { :a => "because there were 13 original colonies" },
+  { :a => "because the stripes represent the original colonies" } ] },
+  { :num => 97, :q => "Why does the flag have 50 stars?*", :answers => [
+  { :a => "because there is one star for each state" },
+  { :a => "because each star represents a state" },
+  { :a => "because there are 50 states" } ] },
+  { :num => 98, :q => "What is the name of the national anthem?", :answers => [
+  { :a => "The Star-Spangled Banner" } ] },
+  { :num => 99, :q => "When do we celebrate Independence Day?*", :answers => [
+  { :a => "July 4" } ] },
+  { :num => 100, :q => "Name two national U.S. holidays.", :answers => [
+  { :a => "New Year's Day" },
+  { :a => "Martin Luther King, Jr. Day" },
+  { :a => "Presidents' Day" },
+  { :a => "Memorial Day" },
+  { :a => "Independence Day" },
+  { :a => "Labor Day" },
+  { :a => "Columbus Day" },
+  { :a => "Veterans Day" },
+  { :a => "Thanksgiving" },
+  { :a => "Christmas" } ] },
+]
+t = Topic.create(name: "INTEGRATED CIVICS", description: "INTEGRATED CIVICS - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+j.each do |q| 
+  newq = Question.create(text: q[:q])
+  
+  q[:answers].each do |a|
+    newa = Answer.create(text: a[:a]);
+    newq.answers.push(newa)
+  end
+    
+  newq.save
+  t.questions.push(newq)
+  t.save
+end
