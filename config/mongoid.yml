@@ -22,10 +22,10 @@ development:
         #   mode: :secondary_preferred
 
         # The name of the user for authentication.
-        # user: 'user'
+        user: '<%= ENV["open_flashcards_development_usr"] %>'
 
         # The password of the user for authentication.
-        # password: 'password'
+        password: '<%= ENV["open_flashcards_development_pwd"] %>'
 
         # The user's database roles.
         # roles:

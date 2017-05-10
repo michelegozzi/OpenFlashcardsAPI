@@ -10,7 +10,8 @@ class ApiKey
   field :access_token, type: String
   #field :expiration, type: Datetime
 
-  validates :access_token, presence: true
+  validates :access_token, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: true }
+  
   
   belongs_to :user
   
@@ -22,6 +23,5 @@ class ApiKey
         self.access_token = access_token
       end while self.class.where(:access_token => access_token).count != 0
     end
-
 end
 

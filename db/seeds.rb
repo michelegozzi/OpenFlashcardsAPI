@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-api_key = ApiKey.new(access_token: ENV["OPENFLASHCARDS_DEFAULT_USER_API_KEY"])
+api_key = ApiKey.new
+api_key.generate_access_token
+api_key.save
+api_key.access_token = ENV["OPENFLASHCARDS_DEFAULT_USER_API_KEY"] # rewrite the token
 api_key.save
 
 default_user = User.create(id: ENV["OPENFLASHCARDS_DEFAULT_USER_ID"], name: ENV["OPENFLASHCARDS_DEFAULT_USER_NAME"], email: ENV["OPENFLASHCARDS_DEFAULT_USER_EMAIL"])
@@ -1422,13 +1425,18 @@ j = [
   { :num => 19, :q => "We elect a U.S. Senator for how many years?", :answers => [
   { :a => "six (6)" } ] },
   { :num => 20, :q => "Who is one of your state's U.S. Senators now?*", :answers => [
-  { :a => "Answers will vary. [District of Columbia residents and residents of U.S. territories should answer that D.C. (or the territory where the applicant lives) has no U.S. Senators.]" } ] },
+  { :a => "Ron Wyden (D)" },
+  { :a => "and Jeff Merkley" } ] },
   { :num => 21, :q => "The House of Representatives has how many voting members?", :answers => [
   { :a => "four hundred thirty-five (435)" } ] },
   { :num => 22, :q => "We elect a U.S. Representative for how many years?", :answers => [
   { :a => "two (2)" } ] },
   { :num => 23, :q => "Name your U.S. Representative.", :answers => [
-  { :a => "Answers will vary. [Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.]" } ] },
+  { :a => "Suzanne Bonamici (D) - District 1" },
+  { :a => "Greg Walden (R) - District 2" },
+  { :a => "Earl Blumenauer (D) - District 3" },
+  { :a => "Peter DeFazio (D) - District 4" },
+  { :a => "Kurt Schrader (D) - District 5" } ] },
   { :num => 24, :q => "Who does a U.S. Senator represent?", :answers => [
   { :a => "all people of the state" } ] },
   { :num => 25, :q => "Why do some states have more Representatives than other states?", :answers => [
@@ -1499,9 +1507,9 @@ j = [
   { :a => "give a driver's license" },
   { :a => "approve zoning and land use" } ] },
   { :num => 43, :q => "Who is the Governor of your state now?", :answers => [
-  { :a => "Answers will vary. [District of Columbia residents should answer that D.C. does not have a Governor.]" } ] },
+  { :a => "Kate Brown (D)" } ] },
   { :num => 44, :q => "What is the capital of your state?*", :answers => [
-  { :a => "Answers will vary. [District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]" } ] },
+  { :a => "Salem" } ] },
   { :num => 45, :q => "What are the two major political parties in the United States?*", :answers => [
   { :a => "Democratic and Republican" } ] },
   { :num => 46, :q => "What is the political party of the President now?", :answers => [

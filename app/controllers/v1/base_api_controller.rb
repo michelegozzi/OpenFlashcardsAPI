@@ -29,11 +29,24 @@ module V1
         case identity
         when "api"
           begin
-            @status = authenticate_or_request_with_http_token do |token, option|
+            logger.debug "run api"
+            authenticate_or_request_with_http_token do |token, option|
+              logger.debug "token: " + token
               ApiKey.where(:access_token => token).count > 0
             end
-          
-            @status
+            #token = bearer_token
+            #@api_key = ApiKey.where(:access_token => token) rescue nil
+            
+            
+            #if @api_key.nil?
+            #  render nothing: true, status: :unauthorized
+            #else
+              #logger.debug "status: " + @status
+            #  @status = false
+            #  @user = @api_key.user
+            #  @status = true if @api_key and @user
+            #end
+            
           rescue => error
             logger.error "render nothing: " + error.inspect
             render nothing: true, status: :unauthorized
