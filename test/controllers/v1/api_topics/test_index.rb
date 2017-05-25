@@ -25,6 +25,8 @@ class APITestTopicContains < MiniTest::Unit::TestCase
   def test_id_correct
     puts @data.to_s
     
+    @data.length
+    
     assert_equal 1, 1
     #assert_equal 4, @data['id']
   end
