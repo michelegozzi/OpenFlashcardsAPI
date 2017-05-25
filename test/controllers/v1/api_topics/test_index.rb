@@ -5,11 +5,14 @@ require 'net/http'
 
 class APITestTopicContains < MiniTest::Unit::TestCase
   def setup
-    url = "http://localhost:3000/api/topics"
-    #url = 'https://openflashcardsapi.herokuapp.com/api/topics'
+    #url = "http://localhost:3000/api/topics"
+    #accept = 'application/openflashcards.api.v1'
+    url = 'http://openflashcardsapi.herokuapp.com/api/topics'
+    accept = 'application/openflashcards.api.v1'
     
     token = "Token token=#{ENV["OPENFLASHCARDS_DEFAULT_USER_API_KEY"]}"
-    accept = 'application/openflashcards.api.v1'
+    
+    
     puts token
     uri = URI(url)
     req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Authorization' => token, 'Accept' => accept)
