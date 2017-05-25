@@ -1386,7 +1386,7 @@ j = [
   { :a => "Government must obey the law." },
   { :a => "No one is above the law." } ] }
 ]
-t = Topic.create(name: "", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "A - Principles of American Democracy", description: "Principles of American Democracy - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1518,7 +1518,7 @@ j = [
   { :a => "Paul D. Ryan" },
   { :a => "(Paul) Ryan" } ] }
 ]
-t = Topic.create(name: "System of Government", description: "System of Government - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "B - System of Government", description: "System of Government - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1581,7 +1581,7 @@ j = [
   { :a => "at age eighteen (18)" },
   { :a => "between eighteen (18) and twenty-six (26)" } ] }
 ]
-t = Topic.create(name: "Rights and Responsibilities", description: "Rights and Responsibilities - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "C - Rights and Responsibilities", description: "Rights and Responsibilities - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1653,7 +1653,7 @@ j = [
   { :num => 70, :q => "Who was the first President?*", :answers => [
   { :a => "(George) Washington" } ] }
 ]
-t = Topic.create(name: "AMERICAN HISTORY - Colonial Period and Independence", description: "AMERICAN HISTORY - Colonial Period and Independence - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "D - AMERICAN HISTORY - Colonial Period and Independence", description: "AMERICAN HISTORY - Colonial Period and Independence - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1697,7 +1697,7 @@ j = [
   { :a => "fought for women's rights" },
   { :a => "fought for civil rights" } ] }
 ]
-t = Topic.create(name: "AMERICAN HISTORY - 1800s", description: "AMERICAN HISTORY - 1800s - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "E - AMERICAN HISTORY - 1800s", description: "AMERICAN HISTORY - 1800s - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1761,7 +1761,7 @@ j = [
   { :a => "Inuit" } ] }
 
 ]
-t = Topic.create(name: "AMERICAN HISTORY - Recent American History and Other Important Historical Information", description: "AMERICAN HISTORY - Recent American History and Other Important Historical Information - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "F - AMERICAN HISTORY - Recent American History and Other Important Historical Information", description: "AMERICAN HISTORY - Recent American History and Other Important Historical Information - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
@@ -1837,7 +1837,7 @@ j = [
   { :a => "Thanksgiving" },
   { :a => "Christmas" } ] }
 ]
-t = Topic.create(name: "INTEGRATED CIVICS", description: "INTEGRATED CIVICS - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
+t = Topic.create(name: "G - INTEGRATED CIVICS", description: "INTEGRATED CIVICS - Civics (History and Government) Questions for the Naturalization Test (rev. 01/17)")
 j.each do |q| 
   newq = Question.create(text: q[:q])
   
